@@ -13,6 +13,7 @@ This library replaces hardware-specific CH32V calls (DMA, SPI, timers, flash) wi
 1. **Install this library**: Place the `ESPboy_CHCore` folder inside your `Arduino/libraries/` directory.
 2. **PROGMEM Optimization**: To save RAM, it's better to add `PROGMEM` to all `const` heavy arrays in the game's source. 
 3. **Fix the `.ino` file**: Delete 1 line and add 4 lines:
+   
 a) Delete
 ```cpp
 #include <CHGame.h>
