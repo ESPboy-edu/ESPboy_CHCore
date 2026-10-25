@@ -1,0 +1,66 @@
+wait 30
+rec start 3
+wait 60
+rec stop 01_tetris
+snap tetris
+tap RIGHT
+wait 20
+rec start 3
+wait 60
+rec stop 02_mario
+snap mario
+tap RIGHT
+wait 20
+rec start 3
+wait 60
+rec stop 03_zelda
+snap zelda
+tap RIGHT
+wait 20
+rec start 3
+wait 60
+rec stop 04_wily
+snap wily
+tap RIGHT
+wait 20
+rec start 3
+wait 60
+rec stop 05_moon
+snap moon
+tap RIGHT
+wait 20
+rec start 3
+wait 60
+rec stop 06_vampire
+snap vampire
+tap RIGHT
+wait 20
+rec start 3
+wait 60
+rec stop 07_brinstar
+snap brinstar
+tap RIGHT
+wait 20
+rec start 3
+wait 60
+rec stop 08_greens
+snap greens
+tap RIGHT
+wait 20
+rec start 3
+wait 60
+rec stop 09_trainer
+snap trainer
+tap A
+wait 10
+snap paused
+tap A
+tap B
+wait 10
+snap melody
+tap DOWN
+tap START
+wait 5
+tap RIGHT
+wait 10
+snap wrapped

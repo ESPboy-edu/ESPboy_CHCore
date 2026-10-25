@@ -1,0 +1,47 @@
+ATM Soundtracks: a CHGame music demo.
+
+ATMlib / Squawk synthesis and tracker code:
+Copyright (c) 2016 - 2026, TEAM a.r.g.
+Copyright (c) 2016 - 2018, Davey Taylor
+Copyright (c) 2016 - 2026, Joeri Gantois
+BSD 3-Clause; full terms in LICENSE and vendor/ATMlib/LICENSE.
+Pinned source: https://github.com/T-arg/ATMlib
+Revision: 8fdabd2fd81082bff50e8af730cae4feff2cce99
+
+Melody note/rhythm reference transcriptions by Robson Couto, 2019:
+https://github.com/robsoncouto/arduino-songs/tree/master/tetris
+https://github.com/robsoncouto/arduino-songs/tree/master/supermariobros
+https://github.com/robsoncouto/arduino-songs/tree/master/zeldatheme
+Only normalized musical note/duration data is included, not those sketches.
+Tetris transcription cites https://www.flutetunes.com/tunes.php?id=192
+Mario transcription cites https://musescore.com/user/2123/scores/2145
+
+Super Mario Bros. overworld and The Legend of Zelda main theme:
+music by Koji Kondo / Nintendo. Tetris Type A: traditional Korobeiniki,
+Game Boy arrangement by Hirokazu Tanaka. Composition rights remain with
+their respective holders; the software license does not relicense the music.
+The added backing parts are CHGame adaptations, not original sound dumps.
+
+Six additional references from VGMusic (see tools/melodies.json for SHA-256):
+Mega Man 2, Dr. Wily Stage 1: music by Takashi Tateishi / Capcom.
+  Sequencer uncredited in the catalogue:
+  https://www.vgmusic.com/music/console/nintendo/nes/Mega_Man_2_Dr_Wiley.mid
+DuckTales, The Moon: music by Hiroshige Tonomura / Capcom.
+  Sequenced by DurfarC:
+  https://www.vgmusic.com/music/console/nintendo/nes/dctmoon.mid
+Castlevania, Vampire Killer: music by Kinuyo Yamashita / Satoe Terashima / Konami.
+  Sequenced by Jorge D. Fuentes:
+  https://www.vgmusic.com/music/console/nintendo/nes/CV1-_Vampire_Killer.mid
+Metroid, Brinstar: music by Hirokazu Tanaka / Nintendo.
+  Sequenced by Jay Reichard:
+  https://www.vgmusic.com/music/console/nintendo/nes/Metroid_-_Brinstar.mid
+Kirby's Dream Land, Green Greens: music by Jun Ishikawa / HAL Laboratory / Nintendo.
+  Sequenced by Heat Man:
+  https://www.vgmusic.com/music/console/nintendo/gameboy/Greengreens.mid
+Pokemon Red/Blue, Trainer Battle: music by Junichi Masuda / Game Freak / Nintendo.
+  Sequenced by Joao "Johnnyz" Buaes:
+  https://www.vgmusic.com/music/console/nintendo/gameboy/PkmRB-Battle2.mid
+
+Only normalized note/rhythm data and attribution are included. Raw MIDI files
+remain outside the source tree. MIDI arrangements are reduced to chip voices;
+the software license does not relicense the underlying compositions.

@@ -1,0 +1,9 @@
+.venv/
+.arduino15/
+.cache/
+sketchbook/
+__pycache__/
+.DS_Store
+Chiptune/build/
+Chiptune/out/
+Chiptune/tools/chsim/build/

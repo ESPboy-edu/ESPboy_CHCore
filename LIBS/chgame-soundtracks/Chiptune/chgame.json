@@ -1,0 +1,31 @@
+{
+  "id": "chiptune",
+  "title": "ATM SOUNDTRACKS",
+  "version": "1.1.0",
+  "description": "Nine ATMlib soundtrack arrangements: Tetris, Mario, Zelda, Mega Man 2, DuckTales, Castlevania, Metroid, Kirby and Pokemon Red/Blue.",
+  "genre": "Demo",
+  "buttons": [
+    {
+      "control": "LEFT / RIGHT",
+      "action": "Previous / next soundtrack"
+    },
+    {
+      "control": "A",
+      "action": "Pause / resume"
+    },
+    {
+      "control": "B",
+      "action": "Melody only / full arrangement"
+    },
+    {
+      "control": "UP / DOWN",
+      "action": "Volume"
+    },
+    {
+      "control": "START",
+      "action": "Restart track; hold 3 seconds for menu"
+    }
+  ],
+  "url": "https://github.com/juliendorra/chgame-soundtracks",
+  "sourceUrl": "https://github.com/juliendorra/chgame-soundtracks"
+}
