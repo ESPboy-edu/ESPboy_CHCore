@@ -1,0 +1,30 @@
+# Level 1 (built with -D SC_TEST_PLAY): the intro, then some flying.
+cal
+wait 90
+snap intro
+tap A
+wait 120
+snap start
+perf start
+hold A
+wait 25
+release A
+hold RIGHT
+wait 20
+release RIGHT
+wait 30
+snap fly1
+hold A
+wait 15
+release A
+hold LEFT
+wait 40
+release LEFT
+wait 40
+snap fly2
+hold A
+wait 30
+release A
+wait 60
+snap fly3
+perf play

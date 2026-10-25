@@ -1,0 +1,22 @@
+# Splash, title, a little flying.
+cal
+wait 60
+snap splash
+perf splash
+tap A
+wait 60
+snap title
+hold A
+wait 20
+release A
+wait 30
+snap title2
+hold RIGHT
+wait 30
+release RIGHT
+hold A
+wait 15
+release A
+wait 60
+snap title3
+perf title

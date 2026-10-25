@@ -1,0 +1,20 @@
+Space Cab for CHGame
+
+The port: Copyright 2026 Jadflat, under the GNU GPL v3 like the game.
+Ported with the help of Claude (Anthropic).
+
+Space Cab is by Vampirics (graphics) and filmote (code), for the Pokitto:
+https://github.com/Press-Play-On-Tape/SpaceCab_Pokitto
+It is free software under the GNU General Public License version 3 (LICENSE),
+and so is this port. src/game/ holds the game's sources, modified for
+CHGame in October 2026 (each change is commented); the levels (src/game/Levels.cpp) are the
+SPCAB000-012.raw files of its release SpaceCab_V1.0.2.zip.
+
+src/game/Font3x5.cpp is the Pokitto library's font3x5 (Aurélien Rodot's
+Gamebuino font, LGPL 3). src/game/Pokitto.* re-implements the parts of the
+Pokitto library the game uses.
+
+The Pokitto's recorded voices and theme tune are not included: CHGame's
+piezo plays short tones in their place.
+
+Built on CHGame, Copyright 2026 Kevin Bates (bateske), Apache-2.0: the framework is vendored in chgame/ (see chgame/NOTICE and chgame/LICENSE).

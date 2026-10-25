@@ -1,0 +1,22 @@
+# Card back: the chip.
+fffffffffffffff
+fffffffffffffff
+fffffffffffffff
+fffffffffffffff
+fffffrwwwrfffff
+ffffrrwwwrrffff
+fffwrrrrrrrwfff
+ffwwrryyyrrwwff
+ffrrryyyyyrrrff
+ffrrryyyyyrrrff
+ffrrryyyyyrrrff
+ffwwrryyyrrwwff
+fffwrrrrrrrwfff
+ffffrrwwwrrffff
+fffffrwwwrfffff
+fffffdddddddfff
+fffffffffffffff
+fffffffffffffff
+fffffffffffffff
+fffffffffffffff
+fffffffffffffff

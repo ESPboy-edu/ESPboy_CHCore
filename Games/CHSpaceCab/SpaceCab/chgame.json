@@ -1,0 +1,19 @@
+{
+  "id": "spacecab",
+  "title": "Space Cab",
+  "author": "Vampirics & filmote (port: Jadflat)",
+  "genre": "Arcade",
+  "description": "Space Cab, Vampirics and filmote's Pokitto tribute to Space Taxi, ported to CHGame: fly your cab between the platforms, pick up the fares and drop them off, and watch your fuel.",
+  "license": "GPL-3.0; see NOTICE",
+  "licenseFiles": [
+    "NOTICE",
+    "LICENSE"
+  ],
+  "cartImage": "docs/cart.png",
+  "buttons": [
+    { "control": "A", "action": "Thruster" },
+    { "control": "B", "action": "Landing gear" },
+    { "control": "LEFT / RIGHT", "action": "Steer" },
+    { "control": "START", "action": "Pause; hold 3 s for the menu" }
+  ]
+}

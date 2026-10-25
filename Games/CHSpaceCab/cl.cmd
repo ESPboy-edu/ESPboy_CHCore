@@ -1,0 +1,3 @@
+@echo off
+rem The CHGame tools on this project's sketch: cl build, cl run SpaceCab\tools\scripts\smoke.txt out\smoke, cl check ...
+python "%~dp0chgame\tools\chgame.py" --sketch "%~dp0SpaceCab" %*

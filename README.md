@@ -1,17 +1,34 @@
-## About CHGame
+# ESPboy_CHCore
 
-**CHGame** is an open-source, ultra-low-cost retro handheld gaming platform and developer's kit (created by the team behind Arduboy). Built around an affordable RISC-V microcontroller, CHGame brings full-color retro gaming, custom graphics drivers, and sound capabilities to micro-hardware enthusiasts.
+CHGame and CHGfx libraries by bateske ported by RomanS to compile CHGames for ESPboy (www.espboy.com).
 
-### CHGame Hardware Specifications
-* **MCU:** CH32X035G8U6 (32-bit RISC-V @ 48 MHz)
-* **Memory:** 64 KB Flash / 20 KB SRAM
-* **Display:** 1.44" ST7735 Full-Color TFT LCD (128×128 pixels, 16-bit color)
-* **Storage & Audio:** MicroSD slot, Piezo speaker
-* **Inputs:** 8 tactile buttons + User LED
+This library replaces hardware-specific CH32V calls (DMA, SPI, timers, flash) with ESP8266-compatible equivalents:
+- **Graphics:** Double-buffered async chunk rendering via `nbSPI`.
+- **Audio:** `Ticker.h` background sequencer using `ESPboy.playTone()`.
+- **Input:** MCP23017 button polling via `ESPboy.getKeys()`.
+- **Save:** Persistent storage using ESP8266 `EEPROM` emulation.
 
-https://chgame.website
+## How to Port a CHGame to ESPboy
 
-### Porting to ESPboy
-While CHGame relies on a 48 MHz RISC-V chip with 20 KB RAM and a 128x128 display, the **ESPboy** (powered by an ESP8266 @ 80/160 MHz with 80 KB RAM and a 128x128 color LCD) offers more than enough horsepower and memory to run CHGame titles smoothly.
+1. **Install this library**: Place the `ESPboy_CHCore` folder inside your `Arduino/libraries/` directory.
+2. **PROGMEM Optimization**: To save RAM, it's better to add `PROGMEM` to all `const` heavy arrays in the game's source. 
+3. **Fix the `.ino` file**: Delete 1 line and add 4 lines:
+a) Delete
+```cpp
+#include <CHGame.h>
+```
+b) Add at the beginning of .ino
+```cpp
+#include <ESPboy_CHCore.h>
+ESPboyInit myESPboy;
+```
+c) Add at the beginning of setup(){};
+```cpp
+myESPboy.begin("GAME_NAME");
+gfx_init();
+```
+4. Mandatory Arduino IDE Setting: Before compiling, you MUST change the memory access setting to allow the code to read PROGMEM arrays correctly. In the Arduino IDE menu, go to Tools -> Non-32-Bit Access and select "Byte/Word access to IRAM/PROGMEM (very slow)".
 
-These ports adapt CHGame games and applications to run natively on ESPboy, adjusting button mappings, display drivers, and audio outputs to take full advantage of ESPboy's hardware.
+![Arduino IDE Settings](ArduinoIDEsettingPROGMEMasArray.png)
+
+5. SD Card to PROGMEM Migration: The ESPboy (ESP8266) has about 1MB of available Flash memory for the compiled sketch. If the original game relies on loading assets from an SD card, it is highly recommended to convert all this data into PROGMEM C-arrays. You will need to adjust the game's file-reading logic to read directly from PROGMEM instead of the SD card.

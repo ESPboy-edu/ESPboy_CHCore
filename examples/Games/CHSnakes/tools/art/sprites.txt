@@ -1,0 +1,134 @@
+# SNAKES & LADDERS' sprites as palette letters, one row per line. '@NAME' starts a
+# sprite; '.' is transparent. A tools/art/<name>.png (lower case), if there
+# is one, replaces the sprite here: tools/sheet.py writes those from an
+# edited sheet.
+#
+#   k INK    w WHITE   d FELT_DK  f FELT   g FELT_LT  s SILVER  r RED   m WINE
+#   y GOLD   b WOOD    u BLUE     n NAVY   p SKIN     c CYAN
+#
+# Drawn at the board's plain size (11 x 11 squares); the camera doubles them
+# close up.
+
+# --- The four tokens, a fruit for each seat. They stand on their bottom row.
+@TOKEN_CHERRIES
+.....ggg...
+.....gg....
+....g.g....
+...g...g...
+..kk...kk..
+.krrk.krrk.
+krwrrkrwrrk
+krrrrkrrrrk
+krrrrkrrrrk
+.krrk.krrk.
+..kk...kk..
+
+@TOKEN_BANANA
+.......kk.
+......kbbk
+......kyyk
+.....kyyyk
+.....kyyyk
+....kyywyk
+...kyywyk.
+.kkyyyyk..
+kyyyyykk..
+kbyykk....
+.kkk......
+
+@TOKEN_APPLE
+.....kb....
+....kbkgk..
+..kkkbkkk..
+.kggkkgggk.
+kgwggggggfk
+kgwgggggffk
+kggggggfffk
+kgggggffffk
+.kggggfffk.
+..kgfkffk..
+...kk.kk...
+
+@TOKEN_STRAWBERRY
+...kgkgk...
+..kgggggk..
+.kkrgggrkk.
+krrrrgrrrrk
+krprrrrrprk
+krrrrprrrrk
+.krrprrrrk.
+.krrrrrprk.
+..krrprrk..
+...krrrk...
+....kkk....
+
+# --- A die with no pips (they are drawn on top, turning with it).
+@DIE
+.kkkkkkkkkkk.
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+kwwwwwwwwwwsk
+ksssssssssssk
+.kkkkkkkkkkk.
+
+# --- A snake's head from above, looking up the screen (the game turns it the
+# way the neck runs). FELT_LT and FELT are remapped to the snake's two colours.
+@SNAKE_HEAD
+...kkk...
+..kgggk..
+.kgggggk.
+.kwkgkwk.
+kgwkgkwgk
+kgggggggk
+kgfgggfgk
+.kgfffgk.
+..kgggk..
+
+# --- ... and with its jaws open.
+@SNAKE_HEAD_OPEN
+.kk...kk.
+kwrk.krwk
+kwrrkrrwk
+krrrrrrrk
+krrmmmrrk
+kgrrrrrgk
+kgwkgkwgk
+.kgggggk.
+..kgggk..
+
+# --- The crown on square 100.
+@CROWN
+y...y...y
+yy.yyy.yy
+yyyyyyyyy
+yryyuyyry
+yyyyyyyyy
+bbbbbbbbb
+
+# --- The pointing glove, CHChess's (a CPU's is remapped: cuff GOLD -> RED,
+# WOOD -> WINE): thumb on the left, the index finger pointing down.
+# Fingertip: bottom row, centre column.
+@HAND
+...kkkkkkkkk.
+..kyyyyyyyyyk
+..kbyyyyyyybk
+..kkkkkkkkkk.
+.kwwwwwwwwwsk
+.kwwwwkwkwwsk
+kwwswwkwkwwsk
+kwwswwswswwsk
+.kskwwwwwwwsk
+.kskwwswswssk
+..kkwwsssssk.
+...kwwskkkk..
+...kwwsk.....
+...kwwsk.....
+...kwwsk.....
+....kkk......

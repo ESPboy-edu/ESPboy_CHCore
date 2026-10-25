@@ -1,0 +1,31 @@
+# The README's GIF, part 2: level 1 (built with -D SC_TEST_PLAY).
+wait 90
+tap A
+wait 60
+rec start 3
+wait 30
+hold A
+wait 25
+release A
+hold RIGHT
+wait 20
+release RIGHT
+wait 30
+hold A
+wait 15
+release A
+wait 30
+rec stop 02_level
+rec start 3
+hold LEFT
+wait 40
+release LEFT
+hold A
+wait 20
+release A
+wait 40
+hold A
+wait 30
+release A
+wait 60
+rec stop 03_level

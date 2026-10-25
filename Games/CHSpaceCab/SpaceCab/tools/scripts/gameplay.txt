@@ -1,0 +1,16 @@
+# The README's GIF, part 1 (`cl gif`): the splash and the title's fly-around.
+# Part 2, the first level, is gameplay_level.txt, run with -D SC_TEST_PLAY
+# (see BUILDING in ../../README.md); then `cl gif --no-run` joins them.
+wait 60
+tap A
+wait 20
+rec start 3
+wait 60
+hold A
+wait 20
+release A
+hold RIGHT
+wait 25
+release RIGHT
+wait 30
+rec stop 01_title
