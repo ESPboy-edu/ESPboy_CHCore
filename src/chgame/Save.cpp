@@ -38,11 +38,9 @@ static void initEEPROM() {
     }
 }
 
-// ESP8266 EEPROM emulation doesn't have image overlap issues like CH32V
 bool available() { return !broken; }
 static bool twoPages() { return true; }
 
-// Read a specific page from EEPROM into our static buffer
 static const uint8_t *readPage(uint32_t offset) {
     initEEPROM();
     for(uint32_t i = 0; i < PAGE; i++) {
@@ -60,21 +58,24 @@ static bool writePage(uint32_t offset, const uint8_t *buf) {
 }
 
 static bool valid(const uint8_t *p, uint32_t magic, uint8_t version, uint16_t size) {
-    const Header *h = (const Header *)p;
+    Header h;
+    memcpy(&h, p, sizeof(Header)); // Безопасное копирование
     uint32_t at = crcAt(size);
-    return h->magic == magic && h->version == version && *(const uint32_t *)(p + at) == crc32(p, at);
+    
+    uint32_t crc_read;
+    memcpy(&crc_read, p + at, sizeof(uint32_t)); // Безопасное копирование
+    
+    return h.magic == magic && h.version == version && crc_read == crc32(p, at);
 }
 
 const void *read(uint32_t magic, uint8_t version, uint16_t size, uint8_t *flag) {
     if (!available() || size > MAX_DATA) return nullptr;
     
-    // Read Page A
     const uint8_t *a = readPage(0);
     bool va = valid(a, magic, version, size);
     Header hA;
-    if (va) memcpy(&hA, a, sizeof(Header)); // Cache header since buffer will be overwritten
+    if (va) memcpy(&hA, a, sizeof(Header));
     
-    // Read Page B
     const uint8_t *b = readPage(256);
     bool vb = valid(b, magic, version, size);
     
@@ -82,21 +83,21 @@ const void *read(uint32_t magic, uint8_t version, uint16_t size, uint8_t *flag) 
     if (va && vb) {
         Header hB;
         memcpy(&hB, b, sizeof(Header));
-        r = (int16_t)(hA.seq - hB.seq) > 0 ? readPage(0) : b; // Reload A if it was newer
+        r = (int16_t)(hA.seq - hB.seq) > 0 ? readPage(0) : b; 
     } else {
         r = va ? readPage(0) : (vb ? b : nullptr);
     }
     
     if (!r) return nullptr;
     
-    const Header *h = (const Header *)r;
-    lastSeq = h->seq;
-    if (flag) *flag = h->flag;
+    Header h;
+    memcpy(&h, r, sizeof(Header));
+    lastSeq = h.seq;
+    if (flag) *flag = h.flag;
     return r + sizeof(Header);
 }
 
 void *buffer() {
-    // Uses idle chunk buffers to prepare save data (no RAM cost)
     uint8_t *buf = gfx_chunkScratch();          
     memset(buf, 0, PAGE);
     return buf + sizeof(Header);
@@ -105,18 +106,23 @@ void *buffer() {
 bool write(uint32_t magic, uint8_t version, uint16_t size, uint8_t flag) {
     if (!available() || size > MAX_DATA) return false;
     uint8_t *buf = gfx_chunkScratch();
-    Header *h = (Header *)buf;
-    h->magic = magic;
-    h->version = version;
-    h->flag = flag;
-    h->seq = (uint16_t)(lastSeq + 1);
-    uint32_t at = crcAt(size);
-    *(uint32_t *)(buf + at) = crc32(buf, at);
     
-    uint32_t offset = (h->seq & 1) ? 256 : 0;   // Alternate pages
+    Header h;
+    h.magic = magic;
+    h.version = version;
+    h.flag = flag;
+    h.seq = (uint16_t)(lastSeq + 1);
+    
+    memcpy(buf, &h, sizeof(Header)); // Безопасное копирование
+    
+    uint32_t at = crcAt(size);
+    uint32_t computed_crc = crc32(buf, at);
+    memcpy(buf + at, &computed_crc, sizeof(uint32_t)); // Безопасное копирование
+    
+    uint32_t offset = (h.seq & 1) ? 256 : 0;
     
     if (!writePage(offset, buf)) { broken = true; return false; }
-    lastSeq = h->seq;
+    lastSeq = h.seq;
     return true;
 }
 
