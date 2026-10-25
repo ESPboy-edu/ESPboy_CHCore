@@ -77,7 +77,7 @@ Obj *findPlayer();
 
 // Where a game has got to (CHLS_EXTRAS: saved at each new level, and the
 // title's CONTINUE). Not the cart's: it had no saves.
-struct Progress {
+struct __attribute__((aligned(4))) Progress {
     uint8_t level, djump;
     uint16_t deaths, seconds, minutes;
     uint32_t fruit;             // got_fruit, a bit a level

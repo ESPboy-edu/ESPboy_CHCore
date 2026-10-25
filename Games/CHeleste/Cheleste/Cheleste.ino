@@ -16,6 +16,7 @@
 #include <ESPboy_CHCore.h>
 ESPboyInit myESPboy;
 
+#include "PicoSynth.h"
 #include "config.h"
 #include "Game.h"
 #include "P8.h"
@@ -101,6 +102,7 @@ static bool hook(char cmd, const char *args) {
 #endif
 
 void setup() {
+    Serial.begin(115200);
     myESPboy.begin("CHleste");
 /*
   //Check OTA2
@@ -136,7 +138,8 @@ void loop() {
     if (paused) {
         paused = pauseInput();
         if (paused) {
-            audio::update();
+            //audio::update();
+            pico_synth::update();
             dbg::markRenderStart();
             gfx_wait();
             saved::flush();
@@ -148,7 +151,8 @@ void loop() {
     } else if (!title && chgame.justPressed(START_BUTTON)) {
         paused = true;
         choice = 0;
-        audio::update();
+        pico_synth::update();
+        //audio::update();
         gfx_wait();
         drawPause();                // over the last picture, which stays
         gfx_flushAsync();
@@ -176,7 +180,8 @@ void loop() {
         else if (after > 0) saved::put(game::progress());
     }
 #endif
-    audio::update();
+    pico_synth::update();
+    //audio::update();
 
     dbg::markRenderStart();
     gfx_wait();

@@ -1,6 +1,7 @@
 // Cheleste's save (Save.h), a CHGame save record.
 #include <CHGame.h>
 #include "Save.h"
+#include "PicoSynth.h" // Подключаем синтезатор
 
 namespace saved {
 
@@ -32,7 +33,11 @@ void clear() {
 }
 
 void flush() {
-    if (dirty) dirty = !save::store(MAGIC, VERSION, data);
+    if (dirty) {
+        pico_synth::pause(); // Отключаем аудио-таймер перед записью во флэш
+        dirty = !save::store(MAGIC, VERSION, data);
+        pico_synth::resume(); // Включаем обратно
+    }
 }
 
 }  // namespace saved
