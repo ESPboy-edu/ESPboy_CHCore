@@ -29,6 +29,6 @@ gfx_init();
 ```
 4. Mandatory Arduino IDE Setting: Before compiling, you MUST change the memory access setting to allow the code to read PROGMEM arrays correctly. In the Arduino IDE menu, go to Tools -> Non-32-Bit Access and select "Byte/Word access to IRAM/PROGMEM (very slow)".
 
-![Arduino IDE Settings](ArduinoIDEsettingPROGMEMasArray.png)
+![Arduino IDE Settings](ArduinoIDEsettingPROGMEMasArray.jpg)
 
 5. SD Card to PROGMEM Migration: The ESPboy (ESP8266) has about 1MB of available Flash memory for the compiled sketch. If the original game relies on loading assets from an SD card, it is highly recommended to convert all this data into PROGMEM C-arrays. You will need to adjust the game's file-reading logic to read directly from PROGMEM instead of the SD card.
