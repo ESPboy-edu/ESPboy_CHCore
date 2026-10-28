@@ -102,7 +102,7 @@ static bool hook(char cmd, const char *args) {
 #endif
 
 void setup() {
-    Serial.begin(115200);
+//    Serial.begin(115200);
     myESPboy.begin("CHleste");
 /*
   //Check OTA2
@@ -112,6 +112,7 @@ void setup() {
   } 
 */   
     gfx_init(); 
+    
     chgame.boot();
     dbg::begin("CHLS " CHLS_VERSION);
 #if CHGAME_DEBUG
