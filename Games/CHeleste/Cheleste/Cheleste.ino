@@ -110,7 +110,7 @@ void setup() {
      ESPboyTerminalGUI *terminalGUIobj = new ESPboyTerminalGUI(&myESPboy.tft, &myESPboy.mcp);
      ESPboyOTA2 *OTA2obj = new ESPboyOTA2(terminalGUIobj);
   } 
- */   
+*/   
     gfx_init(); 
     chgame.boot();
     dbg::begin("CHLS " CHLS_VERSION);

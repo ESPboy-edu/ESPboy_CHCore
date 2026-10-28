@@ -9,7 +9,11 @@
 namespace save {
 
 static const uint32_t PAGE = 256;
-static const uint32_t EEPROM_SIZE = 512; // Two pages: PAGE_A (0) and PAGE_B (256)
+// Увеличиваем буфер до 4096 (стандарт ESPboy), чтобы не конфликтовать с его инициализацией
+static const uint32_t EEPROM_SIZE = 4096; 
+// Сдвигаем сейвы далеко в конец EEPROM, подальше от системных настроек
+static const uint32_t OFFSET_A = 3072;    
+static const uint32_t OFFSET_B = 3328;    
 
 struct Header { uint32_t magic; uint8_t version, flag; uint16_t seq; };
 
@@ -71,21 +75,21 @@ static bool valid(const uint8_t *p, uint32_t magic, uint8_t version, uint16_t si
 const void *read(uint32_t magic, uint8_t version, uint16_t size, uint8_t *flag) {
     if (!available() || size > MAX_DATA) return nullptr;
     
-    const uint8_t *a = readPage(0);
+    const uint8_t *a = readPage(OFFSET_A);
     bool va = valid(a, magic, version, size);
     Header hA;
     if (va) memcpy(&hA, a, sizeof(Header));
     
-    const uint8_t *b = readPage(256);
+    const uint8_t *b = readPage(OFFSET_B);
     bool vb = valid(b, magic, version, size);
     
     const uint8_t *r = nullptr;
     if (va && vb) {
         Header hB;
         memcpy(&hB, b, sizeof(Header));
-        r = (int16_t)(hA.seq - hB.seq) > 0 ? readPage(0) : b; 
+        r = (int16_t)(hA.seq - hB.seq) > 0 ? readPage(OFFSET_A) : b; 
     } else {
-        r = va ? readPage(0) : (vb ? b : nullptr);
+        r = va ? readPage(OFFSET_A) : (vb ? b : nullptr);
     }
     
     if (!r) return nullptr;
@@ -119,7 +123,8 @@ bool write(uint32_t magic, uint8_t version, uint16_t size, uint8_t flag) {
     uint32_t computed_crc = crc32(buf, at);
     memcpy(buf + at, &computed_crc, sizeof(uint32_t)); // Безопасное копирование
     
-    uint32_t offset = (h.seq & 1) ? 256 : 0;
+    // Используем новые безопасные адреса
+    uint32_t offset = (h.seq & 1) ? OFFSET_B : OFFSET_A;
     
     if (!writePage(offset, buf)) { broken = true; return false; }
     lastSeq = h.seq;
