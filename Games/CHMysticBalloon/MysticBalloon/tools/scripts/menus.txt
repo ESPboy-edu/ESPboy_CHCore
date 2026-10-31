@@ -1,0 +1,31 @@
+# Live preview, commit, pause/restart/save/quit, and saved-run loading.
+wait 1
+tap A
+tap DOWN
+tap DOWN
+tap A
+snap conf_color
+tap DOWN
+snap conf_original
+tap DOWN
+snap conf_dmg
+tap DOWN
+snap conf_amber
+tap A
+say G 6
+wait 2
+tap START
+snap pause_resume
+tap DOWN
+snap pause_restart
+tap DOWN
+snap pause_save_quit
+tap A
+snap saved_main_menu
+tap A
+tap A
+wait 30
+tap A
+snap continued
+say V
+say C 0
