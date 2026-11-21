@@ -1,0 +1,14 @@
+CHix
+Copyright (c) 2026 Jadflat, MIT (see ../LICENSE).
+
+An original game for CHGame inspired by the classic arcade genre of territory-claiming games. All code, art
+and music are original.
+
+Built on CHGame, Copyright 2026 Kevin Bates (bateske), Apache-2.0: the framework is vendored in chgame/ (see chgame/NOTICE and chgame/LICENSE).
+
+The stage pictures, screens, sprites and animations (tools/paint/) were painted by the repository's own scripts with Claude as the artist;
+they are original and covered by the MIT licence above. The game reads them from CHIX.DAT on the SD card (tools/make_card.py).
+
+The sound output's timer and pin setup (CHix/Synth.cpp) follows chgame-soundtracks (https://github.com/ESPboy-edu/ESPboy_CHCore/tree/main/LIBS/chgame-soundtracks), BSD 3-Clause;
+CHeleste's software mixer (Games/CHeleste/Cheleste in the same repository) showed the approach was practical (no code taken):
+the copyright notices and licence text are in ../THIRD-PARTY.md.
